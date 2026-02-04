@@ -1,0 +1,16 @@
+[package]
+name = "rest-api-orders"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["serde", "v4"] }
+sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio-rustls",  "macros", "chrono", "uuid"] }
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+dotenvy = "0.15"  # Для загрузки .env файлов
+chrono = { version = "0.4.42", features = ["serde"] }
+rust_decimal = "1.39.0"
+rust_decimal_macros = "1.39.0"
