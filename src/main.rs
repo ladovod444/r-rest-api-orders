@@ -1,3 +1,5 @@
+//https://github.com/ladovod444/r-rest-api-orders
+
 // src/main.rs
 use actix_web::{web, App, HttpResponse, HttpServer, Result};
 // use serde::{Deserialize, Serialize};
@@ -10,7 +12,7 @@ use std::env;
 mod user;
 mod product;
 mod order;
-
+mod order_items;
 // pub use user::User;
 // pub use user::CreateUserRequest;
 // pub use user::UpdateUserRequest;
@@ -30,6 +32,7 @@ use product::create_product;
 use product::get_products;
 
 use order::*;
+use crate::order_items::{create_order_item, get_order_items};
 
 // App state
 struct AppState {
@@ -173,7 +176,10 @@ async fn main() -> std::io::Result<()> {
                     .route("/products", web::get().to(get_products))
 
                     .route("/orders", web::post().to(create_order))
-                    .route("/orders", web::get().to(get_orders)),
+                    .route("/orders", web::get().to(get_orders))
+
+                    .route("/order-items", web::post().to(create_order_item))
+                    .route("/order-items", web::get().to(get_order_items)),
             )
     })
         .bind("127.0.0.1:8080")?
