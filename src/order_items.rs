@@ -109,7 +109,7 @@ pub async fn get_order_items(data: web::Data<AppState>) -> actix_web::Result<Htt
     // SELECT amount::FLOAT8
 
     // match sqlx::query_as::<_, Order>("SELECT * FROM orders ORDER BY created_at DESC")
-    match sqlx::query_as::<_, Order>("SELECT order_item_id, order_id, product_id, quantity, unit_price::FLOAT8, subtotal::FLOAT8 FROM order_items ORDER BY order_id DESC")
+    match sqlx::query_as::<_, OrderItem>("SELECT order_item_id, order_id, product_id, quantity, unit_price::FLOAT8, subtotal::FLOAT8 FROM order_items ORDER BY order_id DESC")
         .fetch_all(&data.db)
         .await
     {
